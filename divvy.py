@@ -48,6 +48,29 @@ def get_names(df):
     print(name_set)
     p_one, p_two = name_set
     return p_one, p_two, df
+
+
+def sum_of_cost(names_tuple):
+    """This function adds up the total each person spent based on their name and if it is an item that needs to be included in the total."""
+    p_one, p_two, df = names_tuple
+    # get the total spent per person from the dataframe.
+    total_one = df[(df['Name']==p_one) & (df['Add to total']=='Yes')]['Cost'].sum()
+    total_two = df[(df['Name']==p_two) & (df['Add to total']=='Yes')]['Cost'].sum()
+    items_one = df[(df['Name']==p_one)][['Item', 'Cost']]
+    items_two = df[(df['Name']==p_two)][['Item', 'Cost']]
+    print(items_one.to_string())
+    print(items_two.to_string())
+    # split the string of costs into a list
+    list_total_one = total_one.split('$')
+    list_total_two = total_two.split('$')
+    list_total_one.remove('')
+    list_total_two.remove('')
+    # add the sum of items for each person.
+    total_cost_one = sum(float(sub) for sub in list_total_one)
+    total_cost_two = sum(float(sub) for sub in list_total_two)
+    print(total_cost_one, total_cost_two)
+    # return a tuple of first sum, second sum, person one, and person two
+    return total_cost_one, total_cost_two, p_one, p_two, items_one.to_string(header=None, index=False), items_two.to_string(header=None, index=False)
     
 if __name__ == '__main__':
   main()
