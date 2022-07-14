@@ -17,6 +17,17 @@ def main():
     owes = who_owes(total_sum)
     pdf = create_pdf(owes)
     send_email(pdf)
+
+    
+def get_sheet_data():
+
+    scope = ['https://spreadsheets.google.com/feeds', 'https://www.googleapis.com/auth/drive']
+    creds = ServiceAccountCredentials.from_json_keyfile_name('<INSERT_JSON_FILE_NAME_HERE>', scope)
+    client = gspread.authorize(creds)
+    sheet = client.open('<INSERT_GOOGLE_SHEET_NAME_HERE>')
+    sheet_instance = sheet.get_worksheet(0)
+    df = pd.DataFrame(sheet_instance.get_all_records())
+    return df
     
 if __name__ == '__main__':
   main()
