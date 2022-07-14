@@ -119,8 +119,42 @@ def create_pdf(output):
     pdf.cell(200, 10, txt = "", ln = 1, align = 'C')
     pdf.cell(200, 10, txt = "Be sure to keep your receipts in a safe place!", ln = 1, align = 'L')
     pdf.output("{}.pdf".format(today))
-
     return "{}.pdf".format(today)
+
+
+def send_email(file_name):
+    """This function emails the PDF to each person."""
+    message_content = '''Here is the spending report for Vivonuo this month.
+Please send the money as soon as you are able and don't forget to keep your receipts in a safe place.
+
+    Thank you and have a great day!'''
+
+    sender = 'YOUR EMAIL'
+    password = 'YOUR PASSWORD/APP PASSWORD'
+    receiver = 'RECIPIENT'S EMAIL'
+
+    message = MIMEMultipart()
+    message['From'] = sender
+    message['To'] = receiver
+    message['Subject'] = 'A test email from me to me.'
+
+    message.attach(MIMEText(message_content, 'plain'))
+    attach_file = open(file_name, 'rb')
+    payload = MIMEBase('application', "pdf", name=file_name)
+    payload.set_payload((attach_file).read())
+    encoders.encode_base64(payload)
+
+    payload.add_header('Content-Decomposition', 'attachment', filename=file_name)
+    message.attach(payload)
+
+    session = smtplib.SMTP('smtp.gmail.com', 587)
+    session.starttls()
+    session.login(sender, password)
+    text = message.as_string()
+    session.sendmail(sender, receiver, text)
+    session.quit()
+    print('Mail sent.')
+
     
 if __name__ == '__main__':
   main()
