@@ -93,5 +93,34 @@ def who_owes(total_cost):
                 "{} spent ${:0.2f} this month.".format(p_one.title(), total_two),
                 items_two, items_one)
     
+    
+def create_pdf(output):
+    """This function puts the results into a PDF and saves it as the date this script is run."""
+    owed, first_person, second_person, items_first, items_second = output
+    # get the date for today
+    today = date.today()
+    # create pdf with input from previous functions to be saved as today's date.
+    pdf = FPDF()
+    pdf.add_page()
+    pdf.set_font("Arial", size = 15)
+    pdf.cell(200, 10, txt = "Monthly Expenses", ln = 1, align = 'C')
+    pdf.cell(200, 10, txt = "", ln = 1, align = 'C')
+    pdf.set_font("Arial", size = 12)
+    pdf.cell(200, 10, txt = first_person, ln = 1, align = 'L')
+    pdf.set_font("Arial", size = 10)
+    pdf.multi_cell(200, 10, items_first, align = 'L')
+    pdf.set_font("Arial", size = 12)
+    pdf.cell(200, 10, txt = second_person, ln = 1, align = 'L')
+    pdf.set_font("Arial", size = 10)
+    pdf.multi_cell(200, 10, items_second, align = 'L')
+    pdf.set_font("Arial", size = 12)
+    pdf.cell(200, 10, txt = "----------------------------------------------", ln = 1, align = 'L')
+    pdf.cell(200, 10, txt = owed, ln = 1, align = 'L')
+    pdf.cell(200, 10, txt = "", ln = 1, align = 'C')
+    pdf.cell(200, 10, txt = "Be sure to keep your receipts in a safe place!", ln = 1, align = 'L')
+    pdf.output("{}.pdf".format(today))
+
+    return "{}.pdf".format(today)
+    
 if __name__ == '__main__':
   main()
