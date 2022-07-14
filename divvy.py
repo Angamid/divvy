@@ -71,6 +71,27 @@ def sum_of_cost(names_tuple):
     print(total_cost_one, total_cost_two)
     # return a tuple of first sum, second sum, person one, and person two
     return total_cost_one, total_cost_two, p_one, p_two, items_one.to_string(header=None, index=False), items_two.to_string(header=None, index=False)
+
+
+def who_owes(total_cost):
+    """This function compares the totals and takes the difference, divides it in half, and decides who needs to pay who for the half-difference."""
+    # amount_owed = 0
+    # unpack the tuple from the sum_of_cost() function.
+    total_one, total_two, p_one, p_two, items_one, items_two = total_cost
+    # figure out who spent more of the two people
+    if total_one > total_two:
+        # find the difference between the two totals and divide the difference by two.
+        amount_owed = (total_one - total_two)/2
+        return ("${:0.2f} is what is owed to {}.".format(amount_owed, p_one.title()),
+                "{} spent ${:0.2f} this month.".format(p_one.title(), total_one),
+                "{} spent ${:0.2f} this month.".format(p_two.title(), total_two),
+                items_one, items_two)
+    else:
+        amount_owed = (total_two - total_one)/2
+        return ("${:0.2f} is what is owed to {}.".format(amount_owed, p_two.title()),
+                "{} spent ${:0.2f} this month.".format(p_two.title(), total_one),
+                "{} spent ${:0.2f} this month.".format(p_one.title(), total_two),
+                items_two, items_one)
     
 if __name__ == '__main__':
   main()
