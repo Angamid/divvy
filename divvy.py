@@ -45,7 +45,6 @@ def get_names(df):
             new_list.append(n)
     # make the list into a set so that it removes all repeats and leaves you with the two names you need.
     name_set = set(new_list)
-    print(name_set)
     p_one, p_two = name_set
     return p_one, p_two, df
 
@@ -68,7 +67,6 @@ def sum_of_cost(names_tuple):
     # add the sum of items for each person.
     total_cost_one = sum(float(sub) for sub in list_total_one)
     total_cost_two = sum(float(sub) for sub in list_total_two)
-    print(total_cost_one, total_cost_two)
     # return a tuple of first sum, second sum, person one, and person two
     return total_cost_one, total_cost_two, p_one, p_two, items_one.to_string(header=None, index=False), items_two.to_string(header=None, index=False)
 
@@ -153,7 +151,7 @@ Please send the money as soon as you are able and don't forget to keep your rece
     text = message.as_string()
     session.sendmail(sender, receiver, text)
     session.quit()
-    print('Mail sent.')
+    print('Mail has been sent.')
 
     
 if __name__ == '__main__':
