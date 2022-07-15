@@ -15,6 +15,7 @@ My journey of creating a project that will divide expenses between co-parents, r
 ## REQUIREMENTS
 
 - Python 3.6+
+- [Required Libraries](requirements.txt)
 - Shared Google Sheet
 - Google Service Account
   - Google Sheets API
@@ -37,7 +38,7 @@ My journey of creating a project that will divide expenses between co-parents, r
       - https://www.analyticsvidhya.com/blog/2020/07/read-and-update-google-spreadsheets-with-python/
     - You also will need to download a JSON file from the "keys" part of your service account so that you can link the code to that file in order to gain access to your shared google sheet.
 
-3. Install python dependencies:
+3. Install required libraries:
 
    ```console
    $ pip install pandas
