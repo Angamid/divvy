@@ -46,11 +46,12 @@ My journey of creating a project that will divide expenses between co-parents, r
    $ pip3 install --upgrade google-api-python-client oauth2client
    ```
 4. Don't forget to input your own:
-    - name of JSON file in get_sheet_data() function
-    - name of google sheet in get_sheet_data() function
-    - text you want written in your PDF in the create_pdf(output) function
-    - message in the send_email(file_name) function
-    - sender, password, and receiver in the send_email(file_name function
+    - name of JSON file in get_sheet_data() function (line 25)
+    - name of google sheet in get_sheet_data() function (line 27)
+    - full path to your desired folder you want the PDFs saved to (line 85)
+    - text you want written in your PDF in the create_pdf(output) function (lines 90 and 106)
+    - message_content in the send_email(file_name) function (line 112)
+    - sender, password, and receiver in the send_email(file_name) function (lines 117-119)
         - You may need to create an APP Password from your Google email account in order for this program to login to your account and send the email.
 
 4. Example usage:
