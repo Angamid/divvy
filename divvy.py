@@ -105,6 +105,8 @@ def create_pdf(output):
     pdf.cell(200, 10, txt = "", ln = 1, align = 'C')
     pdf.cell(200, 10, txt = "Be sure to keep your receipts in a safe place!", ln = 1, align = 'L')
     pdf.output("{}{}.pdf".format(folder_path, today))
+    
+    return "{}{}.pdf".format(folder_path, today)
 
 
 def send_email(file_name):
@@ -126,11 +128,11 @@ Thank you and have a great day!'''
 
     message.attach(MIMEText(message_content, 'plain'))
     attach_file = open(file_name, 'rb')
-    payload = MIMEBase('application', "pdf", name=file_name)
+    payload = MIMEBase('application', "pdf", name='{}.pdf'.format(today))
     payload.set_payload((attach_file).read())
     encoders.encode_base64(payload)
 
-    payload.add_header('Content-Decomposition', 'attachment', filename=file_name)
+    payload.add_header('Content-Decomposition', 'attachment', filename='{}.pdf'.format(today))
     message.attach(payload)
 
     try:
