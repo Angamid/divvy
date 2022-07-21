@@ -17,7 +17,7 @@ My journey of creating a project that will divide expenses between co-parents, r
 
 - Python 3.6+
 - [Required Libraries](requirements.txt)
-- Shared Google Sheet
+- Shared Google Sheet that should look like [this.](googlesheetexamplegithub.JPG)
 - Google Service Account
   - Google Sheets API
   - Google Drive API
