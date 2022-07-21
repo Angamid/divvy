@@ -69,5 +69,11 @@ My journey of creating a project that will divide expenses between co-parents, r
 
 - First you will need to download your Google Sheet as a .csv file and convert it to a dataframe which you can see in the third line of this test file. That makes it easier to test your output matches the input from function to function.
 - Be sure to change 'test.csv' to your .csv file name.
+- example usage:
+    - 'test_divvy.py'
+
+    ```console
+    $ pytest test_divvy.py
+    ```
 
 <br/>
